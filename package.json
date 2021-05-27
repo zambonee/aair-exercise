@@ -1,0 +1,34 @@
+{
+  "name": "Exercise-CurrencyConverterWithGeolocation",
+  "version": "1.0.0",
+  "description": "Currency Converter coding challenge with geolocation.",
+  "main": "index.js",
+  "scripts": {
+    "server": "nodemon server/index.js",
+    "build": "cd client && npm install && npm run build",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Alaska-ECommerce/Exercise-CurrencyConverterWithGeolocation.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Alaska-ECommerce/Exercise-CurrencyConverterWithGeolocation/issues"
+  },
+  "homepage": "https://github.com/Alaska-ECommerce/Exercise-CurrencyConverterWithGeolocation#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^2.0.7"
+  },
+  "engines": {
+    "node": "14.17.0"
+  },
+  "devDependencies": {
+    "concurrently": "^6.2.0"
+  }
+}
