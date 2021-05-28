@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "postinstall": "cd client && npm install",
-    "server": "nodemon server/server.js",
     "build": "cd client && npm install && npm run build",
     "client": "npm start --prefix client",
+    "server": "nodemon server/server.js",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "test-server": "jest ./server",
     "test-client": "cd client && npm run test",

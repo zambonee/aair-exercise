@@ -12,7 +12,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Currency Converter</h1>
+      <auro-header>Currency Converter</auro-header>
       <p>{!data ? "Loading..." : data}</p>
     </div>
   );
