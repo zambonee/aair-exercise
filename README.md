@@ -1,5 +1,6 @@
 # Currency Converter
 Your team has been tasked with building a currency converter to go in the footer of alaskaair.com, it will use the user's geolocation to pre-determine the currency that the converter will convert from. Here's an initial design given to you by the team's designer:
+
 ![Currency Converter](./currency-converter.png)
 
 ## Currency Converter API
