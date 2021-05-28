@@ -11,7 +11,7 @@ We should be able to test this by hitting the endpoint:
 
 So for example if we hit, `/currencyConverter?from=MXN&to=CAD&amount=10` we would expect the response to be the value of 10 Mexico Pesos in Canadian Dollars.
 
-The first part of this is already partially implemented in {fileName} using `Express.js`. Feel free to complete the `Express` implementation or use another technology that you prefer.
+The first part of this is already partially implemented in `server/app.js` using `Express.js`. Feel free to complete the `Express` implementation or use another technology that you prefer. **Do not modify server/server.js, your routes should solely live in server/app.js. This is to ensure the server unit tests run properly.**
 
 ## Get Local Currency Type API
 The next part will be to implement a Get Local Currency API which uses the user's location and returns the local currency in the user's location. We've researched some ways to approach building this API, feel free to use any of these methods or implement your own:
@@ -51,20 +51,6 @@ The next part of your challenge will be to test your front end to make sure it w
 If you decided to complete the `React` implementation you can choose to add more tests in {fileName} which uses `Jest`. If you used another technology in the previous step or prefer not to use `Jest`, make sure to add unit tests in the technology of your choosing.
 
 Please add as many tests as you deem necessary.
-
-## How to use the starter code
-If you decide to use the starter code we've provided, here are a couple useful commands:
-- To run the client use
-`npm run client`
-- To run the server use
-`npm runs server`
-- To run both the client and the server at the same time use
-`npm run dev`
-- To run all the tests use
-`npm run test`
-
-Feel free to change the folder structure any way you deem necessary.
-
 ## What We're Looking For
 
 - How efficient is the implementation?
@@ -72,4 +58,22 @@ Feel free to change the folder structure any way you deem necessary.
 - How well is the code tested?
 - How accessible is the front end?
 
-Please remeber to send over your solution at least a couple hours before the start of your interview!
+Please remember to send over your solution at least a couple hours before the start of your interview!
+
+## How to use the starter code
+If you decide to use the starter code we've provided, here are a couple useful commands:
+
+### Before developing
+- `npm install` - Installs the necessary node modules for your client and server, make sure to do this in the project root
+### Running the app
+- `npm run dev` - Runs both the client and the server at the same time (might take a minute to run, client should open in a browser automatically)
+- `npm run client` - Runs the client
+- `npm run server` - Runs the server
+
+### Testing the app
+- `npm run test`- Runs all the tests
+- `npm run test-client` - Runs all client tests
+- `npm run test-server` - Runs all server tests
+
+Feel free to change the folder structure any way you deem necessary.
+
