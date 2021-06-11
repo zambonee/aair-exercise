@@ -14,7 +14,18 @@ app.get('/api/currencyConverter', (req, res) => {
   const toCurrency = req.query.to;
   const amountCurrency = req.query.amount;
 
-  res.status(503).send('Not Implemented');
+  const fromConversionRate = rates.find(rate => rate.currencyCode === fromCurrency);
+  const toConversionRate = rates.find(rate => rate.currencyCode === toCurrency);
+  const newConversionRate = 1.0 / fromConversionRate['rateFromUSDToCurrency'] * toConversionRate['rateFromUSDToCurrency'];
+
+  const amountInToCurrency = amountCurrency * newConversionRate;
+
+  const responseObject = {
+    amount: amountInToCurrency.toFixed(2),
+    conversionRate: newConversionRate.toFixed(2),
+  }
+
+  return res.status(200).send(responseObject)
 });
 
 /*
