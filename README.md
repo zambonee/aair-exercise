@@ -5,7 +5,7 @@ Your team has been tasked with building a currency converter to go in the footer
 
 Someone on your team has already started this work, but they went on vacation so you agreed to finish it up.
 ## Currency Converter API
-The first part of this task, the "Currency Converter" API, has already been implemented. It can convert an arbitrary amount of currency from one type to another. The conversion rates are retrieved from the file `utils/conversionRates.js`.
+The first part of this task, the "Currency Converter" API, has already been implemented. It can convert an arbitrary amount of currency from one type to another. The conversion rates for the supported currencies are retrieved from the file `server/utils/conversionRates.js`.
 
 The endpoint has the structure of:
 
@@ -19,7 +19,7 @@ This api is implemented in `server/app.js` using `Express.js`. Your task is to a
 The next part has not been implemented. We will need a "Get Local Currency" API that uses the user's location and returns the local currency in the user's location. Before going on vacation, your fellow developer had researched some ways to approach getting the user's location in order to build this API, feel free to use any of these methods or implement your own:
 1. Use the user's IP address and the third-party API [ipapi](https://ipapi.co/api/#specific-location-field).
 2. Use the user's IP address and a database such as [IP2Location](https://lite.ip2location.com/ip2location-lite) to retrieve the user's location.
-3. Use the built-in [HTML geolocator API](https://www.w3schools.com/html/html5_geolocation.asp) to get the latitude and longitude of a user in the front-end and then use [Google's reverse geocoding API](https://developers.google.com/maps/documentation/geocoding/overview#ReverseGeocoding) to get the user's location.
+3. Use the built-in [HTML geolocator API](https://www.w3schools.com/html/html5_geolocation.asp) to get the latitude and longitude of a user in the front end and then use [Google's reverse geocoding API](https://developers.google.com/maps/documentation/geocoding/overview#ReverseGeocoding) to get the user's location.
 
 We should be able to test this by hitting the endpoint:
 
@@ -33,10 +33,10 @@ The next part of this will be to test your APIs to make sure they work as expect
 
 Please add as many tests as you deem necessary.
 
-## Front-End
-The final part will be to complete the `React` front-end inside `client/src/` which will use the APIs from earlier. The barebones components and some logic is there but it's only connected to the "Currency Converter" API, furthermore, it only has some basic styling.
+## Front End
+The final part will be to complete the `React` front end inside `client/src/` which will use the APIs from earlier. The barebones components and the functionality to convert from one currency to another using the "Currency Converter" API are there. We still need to connect it to the "Get Local Currency Type" API, add in error handling and some styling, and whatever else you deem necessary.
 
-There are a couple technical requirements that are required for the front-end:
+There are a couple technical requirements that are required for the front end:
 1. It must use the "Get Local Currency Type" API to get the user's local currency. If it's a currency that we support, it must pre-populate the `fromCurrency` type. If we do not support that currency, then the default is USD.
 2. It must use the "Currency Converter" API to convert the currency (already implemented).
 

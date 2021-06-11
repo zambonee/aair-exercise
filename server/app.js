@@ -1,9 +1,16 @@
 const express = require('express');
 const app = express();
-const rates = require('../utils/conversionRates');
+const ratesByCountryName = require('./utils/conversionRates');
 
 app.get('/api', (req, res) => {
   res.status(200).json({ message: 'Hello from api!' });
+});
+
+/*
+ * Returns the currencies that this currency converter supports.
+*/
+app.get('/api/currencies', (req, res) => {
+  return res.status(200).send(Object.values(ratesByCountryName));
 });
 
 /*
@@ -14,6 +21,8 @@ app.get('/api/currencyConverter', (req, res) => {
   const toCurrency = req.query.to;
   const amountCurrency = req.query.amount;
 
+  const rates = Object.values(ratesByCountryName);
+
   const fromConversionRate = rates.find(rate => rate.currencyCode === fromCurrency);
   const toConversionRate = rates.find(rate => rate.currencyCode === toCurrency);
   const newConversionRate = 1.0 / fromConversionRate['rateFromUSDToCurrency'] * toConversionRate['rateFromUSDToCurrency'];
@@ -21,11 +30,11 @@ app.get('/api/currencyConverter', (req, res) => {
   const amountInToCurrency = amountCurrency * newConversionRate;
 
   const responseObject = {
-    amount: amountInToCurrency.toFixed(2),
-    conversionRate: newConversionRate.toFixed(2),
+    amount: amountInToCurrency,
+    conversionRate: newConversionRate,
   }
 
-  return res.status(200).send(responseObject)
+  return res.status(200).send(responseObject);
 });
 
 /*
