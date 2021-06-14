@@ -16,10 +16,10 @@ So for example if we hit, `api/currencyConverter?from=MXN&to=CAD&amount=10` the 
 This api is implemented in `server/app.js` using `Express.js`. Your task is to add any error handling to this API that you think would be useful. **Do NOT modify server/server.js, your routes should solely live in server/app.js. This is to ensure the server unit tests run properly.**
 
 ## Get Local Currency Type API
-The next part has not been implemented. We will need a "Get Local Currency" API that uses the user's location and returns the local currency in the user's location. Before going on vacation, your fellow developer had researched some ways to approach getting the user's location in order to build this API, feel free to use any of these methods or implement your own:
+The next part has not been implemented. We will need a "Get Local Currency" API that uses the user's location and returns the local currency in the user's location. Before going on vacation, your fellow developer had researched some ways to approach getting the user's location in order to build this API (all of which may or may not be feasible), feel free to use any of these methods or implement your own:
 1. Use the user's IP address and the third-party API [ipapi](https://ipapi.co/api/#specific-location-field).
 2. Use the user's IP address and a database such as [IP2Location](https://lite.ip2location.com/ip2location-lite) to retrieve the user's location.
-3. Use the built-in [HTML geolocator API](https://www.w3schools.com/html/html5_geolocation.asp) to get the latitude and longitude of a user in the front end and then use [Google's reverse geocoding API](https://developers.google.com/maps/documentation/geocoding/overview#ReverseGeocoding) to get the user's location.
+3. Use the built-in [HTML geolocator API](https://www.w3schools.com/html/html5_geolocation.asp) to get the latitude and longitude of a user in the front end and then use [Google's reverse geocoding API](https://developers.google.com/maps/documentation/geocon  ding/overview#ReverseGeocoding) to get the user's location.
 
 We should be able to test this by hitting the endpoint:
 
