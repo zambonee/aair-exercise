@@ -57,16 +57,17 @@ const CurrencyConverter = () => {
       <auro-header display="500">Currency Converter</auro-header>
       <div>
         <div>
-          <label for="amount">Amount: </label>
+          <label htmlFor="amount">Amount: </label>
           <input name="amount" type="number" onChange={updateAmount}></input>
         </div>
         <div>
-          <label for="from">From this currency </label>
+          <label htmlFor="from">From this currency </label>
           <select
             onChange={updateFromCurrency}
             name="from"
+            defaultValue=""
           >
-            <option selected disabled>
+            <option value="" disabled>
               Select a currency
             </option>
             {supportedCurrencies.map((currency, index) => (
@@ -77,12 +78,13 @@ const CurrencyConverter = () => {
           </select>
         </div>
         <div>
-          <label for="to">To this currency </label>
+          <label htmlFor="to">To this currency </label>
           <select
             onChange={updateToCurrency}
             name="to"
+            defaultValue=""
           >
-            <option selected disabled>
+            <option value="" disabled>
               Select a currency
             </option>
             {supportedCurrencies.map((currency, index) => (
