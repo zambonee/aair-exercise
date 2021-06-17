@@ -5,7 +5,7 @@ Your team has been tasked with building a currency converter to go in the footer
 
 Someone on your team has already started this work, but they went on vacation so you agreed to finish it up.
 ## Currency Converter API
-The first part of this task, the "Currency Converter" API, has already been implemented. It can convert an arbitrary amount of currency from one type to another. The conversion rates for the supported currencies are retrieved from the file `server/utils/conversionRates.js`.
+The "Currency Converter" API has already been implemented. It can convert an arbitrary amount of currency from one type to another. The conversion rates for the supported currencies are retrieved from the file `server/utils/conversionRates.js`.
 
 The endpoint has the structure of:
 
@@ -19,7 +19,7 @@ This api is implemented in `server/app.js` using `Express.js`. Your task is to a
 The next part has not been implemented. We will need a "Get Local Currency" API that uses the user's location and returns the local currency in the user's location. Before going on vacation, your fellow developer had researched some ways to approach getting the user's location in order to build this API (all of which may or may not be feasible), feel free to use any of these methods or implement your own:
 1. Use the user's IP address and the third-party API [ipapi](https://ipapi.co/api/#specific-location-field).
 2. Use the user's IP address and a database such as [IP2Location](https://lite.ip2location.com/ip2location-lite) to retrieve the user's location.
-3. Use the built-in [HTML geolocator API](https://www.w3schools.com/html/html5_geolocation.asp) to get the latitude and longitude of a user in the front end and then use [Google's reverse geocoding API](https://developers.google.com/maps/documentation/geocon  ding/overview#ReverseGeocoding) to get the user's location.
+3. Use the built-in [HTML geolocator API](https://www.w3schools.com/html/html5_geolocation.asp) to get the latitude and longitude of a user in the front end and then use [Google's reverse geocoding API](https://developers.google.com/maps/documentation/geocoding/overview#ReverseGeocoding) to get the user's location.
 
 We should be able to test this by hitting the endpoint:
 
@@ -45,17 +45,17 @@ You can use the design given by the team's designer at the beginning of this REA
 We do, however, highly encourage you to use our custom Auro Design System to get any components or colors you may want to use: https://auro.alaskaair.com/getting-started/developers/common-definitions.
 
 ## Front-End Unit Tests
-The next part of your challenge will be to test the front end to make sure it works as expected. Some unit tests have already been added in `client/src/App.test.js` using `Jest`, but it might not cover all the cases needed.
+The next part of your challenge will be to test the front end to make sure it works as expected. Some unit tests have already been added in `client/src/App.test.js` using `Jest`, but it might not cover all cases.
 
 Please add as many tests as you deem necessary.
-## What We're Looking For
+## What We Could Be Looking For
 
 - How efficient is the implementation?
 - How is the implementation organized?
 - How well is the code tested?
 - How accessible is the front end?
 
-Please remember to send over your solution at least a couple hours before the start of your interview!
+Show us what you're good at! Please remember to send over your solution at least a couple hours before the start of your interview!
 
 ## How to use the starter code
 ### Before developing
