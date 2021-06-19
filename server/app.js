@@ -23,19 +23,19 @@ app.get('/api/currencyConverter', (req, res) => {
   const toCurrency = req.query.to;
   const amountCurrency = req.query.amount;
 
-  if (!Number(amountCurrency)) {
-    return res.status(400).send('invalid "amount" param');
+  if (!Number(amountCurrency)) { //allow for negative numbers
+    return res.status(400).send({ message: 'the amount must be a number' });
   }
   const rates = Object.values(ratesByCountryName);
 
   const fromConversionRate = rates.find(rate => rate.currencyCode === fromCurrency);
   if (!fromConversionRate) {
-    return res.status(400).send('invalid "from" param');
+    return res.status(400).send({ message: 'the "from" value is not supported'});
   }
 
   const toConversionRate = rates.find(rate => rate.currencyCode === toCurrency);
   if (!toConversionRate) {
-    return res.status(400).send('invalid "to" param');
+    return res.status(400).send({ message: 'the "to" value is not supported'});
   }
 
   const newConversionRate = 1.0 / fromConversionRate['rateFromUSDToCurrency'] * toConversionRate['rateFromUSDToCurrency'];
@@ -56,7 +56,7 @@ app.get('/api/currencyConverter', (req, res) => {
 app.get('/api/locationToCurrency', (req, res) => {
   const ipAddress = req.ip;
   if (!ipAddress) {
-    return res.status(400).send('could not get the request IP address');
+    return res.status(400).send({ message: 'could not get the request IP address' });
   }
 
   const uri = `https://ipapi.co/${ipAddress}/currency`;
@@ -70,9 +70,9 @@ app.get('/api/locationToCurrency', (req, res) => {
   .catch((error) => {
     console.log(error);
     if (error.status == 404) {
-      return res.status(404).send('could not get currency for region');
+      return res.status(404).send({ message: 'could not get currency for region' });
     }
-    return res.status(500).send('unexpected error');
+    return res.status(500).send({ message: 'unexpected error' });
   });
 });
 
