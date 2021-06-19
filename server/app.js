@@ -21,10 +21,21 @@ app.get('/api/currencyConverter', (req, res) => {
   const toCurrency = req.query.to;
   const amountCurrency = req.query.amount;
 
+  if (!Number(amountCurrency)) {
+    return res.status(400).send({ message: 'invalid "amount" param' });
+  }
   const rates = Object.values(ratesByCountryName);
 
   const fromConversionRate = rates.find(rate => rate.currencyCode === fromCurrency);
+  if (!fromConversionRate) {
+    return res.status(400).send({ message: 'invalid "from" param' });
+  }
+
   const toConversionRate = rates.find(rate => rate.currencyCode === toCurrency);
+  if (!toConversionRate) {
+    return res.status(400).send({ message: 'invalid "to" param' });
+  }
+
   const newConversionRate = 1.0 / fromConversionRate['rateFromUSDToCurrency'] * toConversionRate['rateFromUSDToCurrency'];
 
   const amountInToCurrency = amountCurrency * newConversionRate;
