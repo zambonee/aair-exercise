@@ -6,7 +6,7 @@ const CurrencyConverter = () => {
   const [amount, setAmount] = useState(0);
   const [convertedAmount, setConvertedAmount] = useState(0);
   const [conversionRate, setConversionRate] = useState(0);
-  const [fromCurrency, setFromCurrency] = useState('');
+  const [fromCurrency, setFromCurrency] = useState('USD');
   const [toCurrency, setToCurrency] = useState('');
   const [conversionError, setConversionError] = useState('');
 
@@ -46,10 +46,25 @@ const CurrencyConverter = () => {
       });
   }
 
+  const setLocalCurrency = () => {
+    fetch('/api/locationToCurrency')
+      .then((res) => res.json())
+      .then((body) => {
+        const isSupported = supportedCurrencies.some(c => c.currency === body.currency)
+        if (isSupported) {
+          setFromCurrency(body.currency);
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+
   useEffect(() => {
     fetch("/api/currencies")
       .then((res) => res.json())
-      .then((body) => setSupportedCurrencies(body));
+      .then((body) => setSupportedCurrencies(body))
+      .then(() => setLocalCurrency())
   }, []);
 
   return (
@@ -63,9 +78,9 @@ const CurrencyConverter = () => {
         <div>
           <label htmlFor="from">From this currency </label>
           <select
+            value = {fromCurrency}
             onChange={updateFromCurrency}
             name="from"
-            defaultValue=""
           >
             <option value="" disabled>
               Select a currency
