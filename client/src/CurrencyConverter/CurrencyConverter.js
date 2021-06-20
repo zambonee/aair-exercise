@@ -126,10 +126,10 @@ const CurrencyConverter = () => {
       <div>
         {(convertedAmount && conversionRate) ? 
         <>
-            <p className="text-center util_body--lg">{roundToCent(amount)} ({fromCurrency}) = {roundToCent(convertedAmount)} ({toCurrency})</p>
+            <p className="text-center util_body--lg" role="status">{roundToCent(amount)} ({fromCurrency}) = {roundToCent(convertedAmount)} ({toCurrency})</p>
             <small className="text-muted">Conversion rate (updates daily): 1 {fromCurrency} =  {roundToCent(conversionRate)} {toCurrency}</small>
         </> : ``}
-        {conversionError ? <auro-alerts error role="error">{conversionError}</auro-alerts>: ``}
+        {conversionError ? <auro-alerts error>{conversionError}</auro-alerts>: ``}
         <div className="row">
           <small className="col text-muted">Purchases at alaskaair.com are in U.S. dollars.</small>
         </div>
