@@ -30,12 +30,12 @@ app.get('/api/currencyConverter', (req, res) => {
 
   const fromConversionRate = rates.find(rate => rate.currencyCode === fromCurrency);
   if (!fromConversionRate) {
-    return res.status(400).send({ message: 'the "from" value is not supported'});
+    return res.status(400).send({ message: 'the "from" value is not a supported currency'});
   }
 
   const toConversionRate = rates.find(rate => rate.currencyCode === toCurrency);
   if (!toConversionRate) {
-    return res.status(400).send({ message: 'the "to" value is not supported'});
+    return res.status(400).send({ message: 'the "to" value is not a supported currency'});
   }
 
   const newConversionRate = 1.0 / fromConversionRate['rateFromUSDToCurrency'] * toConversionRate['rateFromUSDToCurrency'];
