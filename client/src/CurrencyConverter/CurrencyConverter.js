@@ -1,5 +1,9 @@
 import React, {useState, useEffect} from "react";
-import "./CurrencyConverter.css";
+import "./CurrencyConverter.scss";
+
+import "@alaskaairux/auro-header";
+import "@alaskaairux/auro-alerts";
+import "@alaskaairux/auro-button";
 
 const CurrencyConverter = () => {
   const [supportedCurrencies, setSupportedCurrencies] = useState([]);
@@ -46,6 +50,10 @@ const CurrencyConverter = () => {
       });
   }
 
+  const roundToCent = (x) => {
+    return x.toFixed(2);
+  }
+
   const setLocalCurrency = () => {
     fetch('/api/locationToCurrency')
       .then((res) => res.json())
@@ -68,59 +76,64 @@ const CurrencyConverter = () => {
   }, []);
 
   return (
-    <div className="CurrencyConverter">
-      <auro-header display="500">Currency Converter</auro-header>
-      <div>
-        <div>
-          <label htmlFor="amount">Amount: </label>
-          <input name="amount" type="number" onChange={updateAmount}></input>
-        </div>
-        <div>
-          <label htmlFor="from">From this currency </label>
-          <select
-            value = {fromCurrency}
-            onChange={updateFromCurrency}
-            name="from"
-          >
-            <option value="" disabled>
-              Select a currency
-            </option>
-            {supportedCurrencies.map((currency, index) => (
-              <option key={index} value={currency.currencyCode}>
-                {currency.fullCurrencyName} ({currency.currencyCode})
-              </option>
-            ))}
-          </select>
-        </div>
-        <div>
-          <label htmlFor="to">To this currency </label>
-          <select
-            onChange={updateToCurrency}
-            name="to"
-            defaultValue=""
-          >
-            <option value="" disabled>
-              Select a currency
-            </option>
-            {supportedCurrencies.map((currency, index) => (
-              <option key={index} value={currency.currencyCode}>
-                {currency.fullCurrencyName} ({currency.currencyCode})
-              </option>
-            ))}
-          </select>
-        </div>
+    <div className="container-sm">
+      <auro-header display="650">Currency Converter</auro-header>
+      <p>Select amount and currency you would like to convert.</p>
+      <div className="form-group col">
+        <label htmlFor="amount" className="control-label">Amount: </label>
+        <input name="amount" type="number" onChange={updateAmount} className="form-control"></input>
       </div>
-      <button onClick={convertFunds}>Convert</button>
+      <div className="form-group col">
+        <label htmlFor="from" className="control-label">From this currency </label>
+        <select
+          value = {fromCurrency}
+          onChange={updateFromCurrency}
+          name="from"
+          className="form-control"
+        >
+          <option value="" disabled>
+            Select a currency
+          </option>
+          {supportedCurrencies.map((currency, index) => (
+            <option key={index} value={currency.currencyCode}>
+              {currency.fullCurrencyName} ({currency.currencyCode})
+            </option>
+          ))}
+        </select>
+      </div>
+      <div className="form-group col">
+        <label htmlFor="to" className="control-label">To this currency </label>
+        <select
+          onChange={updateToCurrency}
+          name="to"
+          defaultValue=""
+          className="form-control"
+        >
+          <option value="" disabled>
+            Select a currency
+          </option>
+          {supportedCurrencies.map((currency, index) => (
+            <option key={index} value={currency.currencyCode}>
+              {currency.fullCurrencyName} ({currency.currencyCode})
+            </option>
+          ))}
+        </select>
+      </div>
+      <div className="col text-center p-3">
+        <auro-button onClick={convertFunds}>Convert</auro-button>
+      </div>
       <div>
         {(convertedAmount && conversionRate) ? 
         <>
-            <p>
-            <strong>{amount} ({fromCurrency}) = {convertedAmount} ({toCurrency})</strong>
-            </p>
-            <p>Conversion rate (updates daily): 1 {fromCurrency} =  {conversionRate} {toCurrency}</p>
+            <div className="text-center p-3">
+            <strong>{roundToCent(amount)} ({fromCurrency}) = {roundToCent(convertedAmount)} ({toCurrency})</strong>
+            </div>
+            <small className="text-muted">Conversion rate (updates daily): 1 {fromCurrency} =  {roundToCent(conversionRate)} {toCurrency}</small>
         </> : ``}
-        {conversionError != null ? <p>{conversionError}</p>: ``}
-        <p>Purchases at alaskaair.com are in U.S. dollars.</p>
+        {conversionError ? <auro-alerts error>{conversionError}</auro-alerts>: ``}
+        <div className="row">
+          <small className="col text-muted">Purchases at alaskaair.com are in U.S. dollars.</small>
+        </div>
       </div>
     </div>
   );
