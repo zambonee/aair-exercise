@@ -3,15 +3,7 @@
 @import '~@alaskaairux/webcorestylesheets/dist/fonts';
 @import "~@alaskaairux/webcorestylesheets/dist/normalize";
 @import "~@alaskaairux/webcorestylesheets/dist/essentials";
-// @import "~@alaskaairux/webcorestylesheets/dist/utilityClasses"; //utilityClasses is broken
-
-
-// label {
-//     display: block;
-// }
-// input {
-//     display: block;
-// }
+@import '@alaskaairux/webcorestylesheets/dist/utilityClasses/fontStyles';
 
 .container-sm {
     max-width: 400px;
@@ -29,4 +21,10 @@
 input.form-control {
     border-style: none none solid none;
     border-radius: 0;
+}
+
+.util_body--lg {
+    font-size: x-large;
+    font-weight: 800;
+    margin: 16px 0;
 }

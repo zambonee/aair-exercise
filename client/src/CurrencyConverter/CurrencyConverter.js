@@ -81,14 +81,14 @@ const CurrencyConverter = () => {
       <p>Select amount and currency you would like to convert.</p>
       <div className="form-group col">
         <label htmlFor="amount" className="control-label">Amount: </label>
-        <input name="amount" type="number" onChange={updateAmount} className="form-control"></input>
+        <input id="amount" type="number" onChange={updateAmount} className="form-control"></input>
       </div>
       <div className="form-group col">
         <label htmlFor="from" className="control-label">From this currency </label>
         <select
           value = {fromCurrency}
           onChange={updateFromCurrency}
-          name="from"
+          id="from"
           className="form-control"
         >
           <option value="" disabled>
@@ -105,7 +105,7 @@ const CurrencyConverter = () => {
         <label htmlFor="to" className="control-label">To this currency </label>
         <select
           onChange={updateToCurrency}
-          name="to"
+          id="to"
           defaultValue=""
           className="form-control"
         >
@@ -120,17 +120,16 @@ const CurrencyConverter = () => {
         </select>
       </div>
       <div className="col text-center p-3">
+        {/* auro-button disabled prop doesn't work, can't use it for gated validation */}
         <auro-button onClick={convertFunds}>Convert</auro-button>
       </div>
       <div>
         {(convertedAmount && conversionRate) ? 
         <>
-            <div className="text-center p-3">
-            <strong>{roundToCent(amount)} ({fromCurrency}) = {roundToCent(convertedAmount)} ({toCurrency})</strong>
-            </div>
+            <p className="text-center util_body--lg">{roundToCent(amount)} ({fromCurrency}) = {roundToCent(convertedAmount)} ({toCurrency})</p>
             <small className="text-muted">Conversion rate (updates daily): 1 {fromCurrency} =  {roundToCent(conversionRate)} {toCurrency}</small>
         </> : ``}
-        {conversionError ? <auro-alerts error>{conversionError}</auro-alerts>: ``}
+        {conversionError ? <auro-alerts error role="error">{conversionError}</auro-alerts>: ``}
         <div className="row">
           <small className="col text-muted">Purchases at alaskaair.com are in U.S. dollars.</small>
         </div>
