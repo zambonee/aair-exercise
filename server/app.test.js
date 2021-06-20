@@ -68,7 +68,7 @@ describe('Test /api/locationToCurrency', () => {
   describe("Mocked ipapi", async() => {
     const axios = require('axios');
     test('Returns value from ipapi', async() => {
-      jest.spyOn(axios, 'get').mockResolvedValue({ data: 'MXN' });
+      jest.spyOn(axios, 'get').mockResolvedValue({ data: 'MXN' }); //linter warns on these promise returns in the mocks
       const response = await request(app).get('/api/locationToCurrency');
       expect(response.statusCode).toBe(200);
       expect(response.body.currency).toBe('MXN');
