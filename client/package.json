@@ -14,7 +14,9 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "server": "nodemon ../server/server.js",
     "test": "react-scripts test --testURL=http://localhost:3001",
+    "fullTest": "concurrently \"npm run server\" \"npm run test\"",
     "eject": "react-scripts eject"
   },
   "proxy": "http://localhost:3001",
